@@ -10,7 +10,18 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+            //AllOldRecords();
+
             CarManager carManager=new CarManager(new EfCarDal());
+            foreach (var item in carManager.GetCarDetails())
+            {
+                Console.WriteLine(item.CarName+" "+item.BrandName+" "+item.ColorName+" "+item.DailyPrice);
+            }
+        }
+
+        private static void AllOldRecords()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
 
             Console.WriteLine("-------------------------------");
 
@@ -45,8 +56,13 @@ namespace ConsoleUI
                 Console.WriteLine(car.Description);
             }
 
-           
+            Console.WriteLine("-------------------------------");
 
+            ColorManager colorManager = new ColorManager(new EfColorDal());
+            foreach (var color in colorManager.GetAll())
+            {
+                Console.WriteLine(color.Name);
+            }
         }
     }
 }
