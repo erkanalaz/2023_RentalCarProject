@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Utilities.Results;
 using Entities.Concrete;
+using Entities.DTOs;
 
 namespace Business.Abstract
 {
     public interface IColorService
     {
-        List<Color> GetAll();
-        List<Color> GetById(int colorId);
-        void Add(Color color);
-        void Delete(Color color);
-        void Update(Color color);
+        IDataResult<List<Color>> GetAll();
+        IDataResult<List<Color>> GetCarsByColorId(int id);
+
+        IResult Add(Color color);
+        IResult Delete(Color color);
+        IResult Update(Color color);
     }
 }
