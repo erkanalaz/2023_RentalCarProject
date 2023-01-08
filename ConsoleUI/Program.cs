@@ -3,6 +3,7 @@ using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace ConsoleUI
 {
@@ -13,56 +14,21 @@ namespace ConsoleUI
             //AllOldRecords();
 
             CarManager carManager=new CarManager(new EfCarDal());
-            foreach (var item in carManager.GetCarDetails())
+            var result = carManager.GetCarDetails();
+            if (result.Success)
             {
-                Console.WriteLine(item.CarName+" "+item.BrandName+" "+item.ColorName+" "+item.DailyPrice);
+                foreach (var item in result.Data)
+                {
+                    Console.WriteLine(item.CarName + " " + item.BrandName + " " + item.ColorName + " " + item.DailyPrice);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
         }
 
-        private static void AllOldRecords()
-        {
-            CarManager carManager = new CarManager(new EfCarDal());
-
-            Console.WriteLine("-------------------------------");
-
-            carManager.Add(new Car
-            {
-                BrandId = 3,
-                ColorId = 4,
-                ModelYear = "2023",
-                DailyPrice = 330,
-                Description = "BEYAZ AUDİ A3"
-            });
-
-            Console.WriteLine("-------------------------------");
-
-
-            foreach (var car in carManager.GetAll())
-            {
-                Console.WriteLine(car.Description);
-            }
-
-            Console.WriteLine("-------------------------------");
-
-            foreach (var car in carManager.GetCarsByColorId(1))
-            {
-                Console.WriteLine(car.Description);
-            }
-
-            Console.WriteLine("-------------------------------");
-
-            foreach (var car in carManager.GetGetCarsByBrandId(2))
-            {
-                Console.WriteLine(car.Description);
-            }
-
-            Console.WriteLine("-------------------------------");
-
-            ColorManager colorManager = new ColorManager(new EfColorDal());
-            foreach (var color in colorManager.GetAll())
-            {
-                Console.WriteLine(color.Name);
-            }
-        }
+       
     }
 }
