@@ -23,7 +23,16 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
+            if (DateTime.Now.Hour==21)
+            {
+                return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
+            }
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarListed);
+        }
+
+        public IDataResult<List<Car>> GetById(int id)
+        {
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c=>c.Id==id),Messages.CarListed);
         }
 
         public IDataResult<List<Car>> GetGetCarsByBrandId(int id)

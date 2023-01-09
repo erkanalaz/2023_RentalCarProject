@@ -16,6 +16,21 @@ namespace ConsoleUI
             BrandManager brandManager=new BrandManager(new EfBrandDal());
             ColorManager colorManager= new ColorManager(new EfColorDal());
             RentalManager rentalManager= new RentalManager(new EfRentalDal());
+            CarManager carManager=new CarManager(new EfCarDal());
+
+            CarDelete(carManager);
+
+
+            carManager.Delete(new Car
+            {
+                Id = 1,BrandId = 1,ColorId = 1,ModelYear = "2020",DailyPrice = 250,Description = "KIRMIZI VW GOLF"
+            });
+
+            CarDelete(carManager);
+
+
+            //carManager.Delete()
+
             //UserAdd(userManager);
             //UserGetAll(userManager);
 
@@ -25,8 +40,22 @@ namespace ConsoleUI
             //ColorAdd(colorManager);
             //ColorGetAll(colorManager);
 
-            RentalAdd(rentalManager);
+            //RentalAdd(rentalManager);
             //RentalGetAll(rentalManager);
+        }
+
+        private static void CarDelete(CarManager carManager)
+        {
+            var result = carManager.GetAll();
+            if (result.Success)
+            {
+                foreach (var item in result.Data)
+                {
+                    Console.WriteLine(item.Id + " " + item.Description);
+                }
+            }
+
+            Console.WriteLine(result.Message);
         }
 
         private static void RentalAdd(RentalManager rentalManager)
