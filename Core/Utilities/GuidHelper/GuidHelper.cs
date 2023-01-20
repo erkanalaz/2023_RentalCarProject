@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Utilities.Helpers.GuidHelper
+namespace Core.Utilities.GuidHelper
 {
     public class GuidHelper
     {
@@ -12,7 +12,6 @@ namespace Core.Utilities.Helpers.GuidHelper
         {
 
             return Guid.NewGuid().ToString();
-
         }
     }
 }

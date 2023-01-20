@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace Core.Utilities.Helpers
+namespace Core.Utilities.Helpers.FileHelper
 {
     public interface IFileHelper
     {

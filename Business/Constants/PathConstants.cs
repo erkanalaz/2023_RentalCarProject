@@ -10,5 +10,4 @@ namespace Business.Constants
     {
         public static string ImagesPath = "wwwroot\\Uploads\\Images\\";
     }
-    
 }

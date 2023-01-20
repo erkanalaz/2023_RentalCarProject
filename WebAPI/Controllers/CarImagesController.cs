@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Business.Abstract;
-using DataAccess.Abstract;
 using Entities.Concrete;
 
 namespace WebAPI.Controllers
@@ -14,12 +13,12 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CarImagesController : ControllerBase
     {
-        ICarImageService _carImageService;
+        private ICarImageService _carImageService;
+
         public CarImagesController(ICarImageService carImageService)
         {
             _carImageService = carImageService;
         }
-
 
         [HttpPost("add")]
         public IActionResult Add([FromForm] IFormFile file, [FromForm] CarImage carImage)
@@ -66,7 +65,8 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpGet("getbycarid")]
+
+        [HttpGet("getbycarıd")]
         public IActionResult GetByCarId(int carId)
         {
             var result = _carImageService.GetByCarId(carId);
@@ -76,6 +76,7 @@ namespace WebAPI.Controllers
             }
             return Ok(result);
         }
+
 
         [HttpGet("getbyimageid")]
         public IActionResult GetByImageId(int imageId)

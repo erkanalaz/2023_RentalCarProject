@@ -47,5 +47,7 @@ namespace Business.Constants
         public static string RentalFailed = "Araç kiradan dönmediği için tekrar kiralanamaz!";
 
         public static string CarImageNumberExceed = "Araca ait fotoğraf sayısı maksimum 5 olabilir";
+
+        public static string PicturesUploaded = "Resimler başarıyla yüklendi";
     }
 }
