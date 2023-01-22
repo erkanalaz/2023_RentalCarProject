@@ -1,8 +1,10 @@
-﻿using Entities.Concrete;
+﻿using Core.Entities.Concrete;
+using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -49,5 +51,14 @@ namespace Business.Constants
         public static string CarImageNumberExceed = "Araca ait fotoğraf sayısı maksimum 5 olabilir";
 
         public static string PicturesUploaded = "Resimler başarıyla yüklendi";
+
+        public static string AuthorizationDenied = "Yetkisiz erişim!";
+
+        public static string UserRegistered { get; internal set; }
+        public static User UserNotFound { get; internal set; }
+        public static User PasswordError { get; internal set; }
+        public static string SuccessfulLogin { get; internal set; }
+        public static string UserAlreadyExists { get; internal set; }
+        public static string AccessTokenCreated { get; internal set; }
     }
 }

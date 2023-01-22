@@ -1,6 +1,7 @@
 ﻿using System;
 using Business.Concrete;
 using Business.Constants;
+using Core.Entities.Concrete;
 using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -13,17 +14,17 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             UserManager userManager = new UserManager(new EfUserDal());
-            BrandManager brandManager=new BrandManager(new EfBrandDal());
-            ColorManager colorManager= new ColorManager(new EfColorDal());
-            RentalManager rentalManager= new RentalManager(new EfRentalDal());
-            CarManager carManager=new CarManager(new EfCarDal());
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
+            ColorManager colorManager = new ColorManager(new EfColorDal());
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            CarManager carManager = new CarManager(new EfCarDal());
 
             CarDelete(carManager);
 
 
             carManager.Delete(new Car
             {
-                Id = 1,BrandId = 1,ColorId = 1,ModelYear = "2020",DailyPrice = 250,Description = "KIRMIZI VW GOLF"
+                Id = 1, BrandId = 1, ColorId = 1, ModelYear = "2020", DailyPrice = 250, Description = "KIRMIZI VW GOLF"
             });
 
             CarDelete(carManager);
@@ -61,8 +62,9 @@ namespace ConsoleUI
         private static void RentalAdd(RentalManager rentalManager)
         {
             rentalManager.Add(new Rental
-            {
-                CarId = 1, CustomerId = 1, RentDate = DateTime.Now, ReturnDate = DateTime.MinValue}
+                {
+                    CarId = 1, CustomerId = 1, RentDate = DateTime.Now, ReturnDate = DateTime.MinValue
+                }
             );
 
         }
@@ -97,8 +99,9 @@ namespace ConsoleUI
                     Console.WriteLine(item.Name);
                 }
             }
+
             Console.WriteLine(result.Message);
-            
+
         }
 
         private static void BrandAdd(BrandManager brandManager)
@@ -121,35 +124,37 @@ namespace ConsoleUI
                 Console.WriteLine(result.Message);
             }
         }
-
-        private static void UserAdd(UserManager userManager)
-        {
-            userManager.Add(new User
-            {
-                FirstName = "Banu",
-                LastName = "Alaz",
-                Email = "banualaz@gmail.com",
-                Password = "987654321"
-            });
-        }
-
-        private static void UserGetAll(UserManager userManager)
-        {
-            var result = userManager.GetAll();
-
-            if (result.Success)
-            {
-                foreach (var item in result.Data)
-                {
-                    Console.WriteLine(item.Id + " " + item.FirstName + " " + item.LastName + " " + item.Email + " " +
-                                      item.Password);
-                    Console.WriteLine(result.Message);
-                }
-            }
-            else
-            {
-                Console.WriteLine(result.Message);
-            }
-        }
     }
 }
+
+//        private static void UserAdd(UserManager userManager)
+//        {
+//            userManager.Add(new User
+//            {
+//                FirstName = "Banu",
+//                LastName = "Alaz",
+//                Email = "banualaz@gmail.com",
+//                Password = "987654321"
+//            });
+//        }
+
+//        private static void UserGetAll(UserManager userManager)
+//        {
+//            var result = userManager.GetAll();
+
+//            if (result.Success)
+//            {
+//                foreach (var item in result.Data)
+//                {
+//                    Console.WriteLine(item.Id + " " + item.FirstName + " " + item.LastName + " " + item.Email + " " +
+//                                      item.Password);
+//                    Console.WriteLine(result.Message);
+//                }
+//            }
+//            else
+//            {
+//                Console.WriteLine(result.Message);
+//            }
+//        }
+//    }
+//}

@@ -1,59 +1,52 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Business.Abstract;
-using Business.Constants;
-using Core.Utilities.Results;
-using DataAccess.Abstract;
-using Entities.Concrete;
+using Core.Entities.Concrete;
+    using Core.Utilities.Results;
+    using DataAccess.Abstract;
 
 namespace Business.Concrete
 {
-    public class UserManager:IUserService
+    public class UserManager : IUserService
     {
-        private IUserDal _userDal;
+        IUserDal _userDal;
 
         public UserManager(IUserDal userDal)
         {
             _userDal = userDal;
         }
 
-        public IDataResult<List<User>> GetAll()
+        //public List<OperationClaim>GetClaims(User user)
+        //{
+        //    return _userDal.GetClaims(user);
+        //}
+
+        //public IResult Add(User user)
+        //{
+        //    _userDal.Add(user);
+        //    return new SuccessResult();
+        //}
+
+        //public IDataResult<User> GetByMail(string email)
+        //{
+        //    return new SuccessDataResult<User>(_userDal.Get(u=>u.Email==email));
+        //}
+        public List<OperationClaim> GetClaims(User user)
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll(),Messages.UserListed);
+            return _userDal.GetClaims(user);
         }
 
-        public IDataResult<User> GetById(int id)
+        public void Add(User user)
         {
-            return new SuccessDataResult<User>(_userDal.Get(u=>u.Id==id),Messages.UserListed);
+            _userDal.Add(user);
         }
 
-        public IResult Add(User user)
+        public User GetByMail(string email)
         {
-            if (user.Password.Length<5)
-            {
-                return new ErrorResult(Messages.InvalidPassword);
-            }
-            else
-            {
-                _userDal.Add(user);
-                return new SuccessResult(Messages.UserAdded); 
-            }
-            
-        }
-
-        public IResult Delete(User user)
-        {
-            _userDal.Delete(user);
-            return new SuccessResult(Messages.UserDeleted);
-        }
-
-        public IResult Update(User user)
-        {
-            _userDal.Update(user);
-            return new SuccessResult(Messages.UserUpdated);
+            return _userDal.Get(u=>u.Email==email);
         }
     }
 }
