@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml;
 
 namespace Core.Utilities.Results
 {
@@ -21,6 +20,8 @@ namespace Core.Utilities.Results
         {
             Success = success;
         }
+
+
 
         public bool Success { get; }
         public string Message { get; }

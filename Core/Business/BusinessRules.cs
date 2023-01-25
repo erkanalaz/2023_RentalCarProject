@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Core.Utilities.Results;
 
-namespace Core.BusinessRules
+namespace Core.Business
 {
     public class BusinessRules
     {
@@ -20,5 +20,6 @@ namespace Core.BusinessRules
             }
             return null;
         }
+
     }
 }
